@@ -35,7 +35,7 @@ void MainWindow::showTime(void)
     if(time_diff<0){
         ui->timer->display(QString("00:00:00"));
         ui->textBrowser->setEnabled(true);
-        ui->textBrowser->setText(QString("Remember to punch in!"));
+        ui->textBrowser->setText(QString("Remember to punch out!"));
     }else{
         int hour, min, sec;
         hour = time_diff/HOUR_SECONDS;
@@ -88,5 +88,7 @@ void MainWindow::count_days(void)
         curr_time+=DAY_SECONDS;
         curr_tm = std::localtime(&curr_time);
     }
+    if(remain_workdays<0)
+        remain_workdays*=-1;
     ui->reamin_workdays_LCD->display(remain_workdays);
 }
